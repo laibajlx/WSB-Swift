@@ -53,3 +53,12 @@ final class CalendarViewController: BaseViewController, UICalendarViewDelegate, 
         updateStatus()
     }
 
+    // mark delegates
+    func multiDateSelection(_ s: UICalendarSelectionMultiDate, didSelectDate dc: DateComponents) { toggle(dc, on: true) }
+    func multiDateSelection(_ s: UICalendarSelectionMultiDate, didDeselectDate dc: DateComponents) { toggle(dc, on: false) }
+
+    func calendarView(_ v: UICalendarView, decorationFor dc: DateComponents) -> UICalendarView.Decoration? {
+        guard let k = CycleStore.key(dc), CycleStore.predictedKeys().contains(k), !CycleStore.days.contains(k) else { return nil }
+        return .default(color: .brand, size: .large)
+    }
+}
