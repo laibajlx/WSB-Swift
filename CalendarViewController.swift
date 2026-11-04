@@ -32,4 +32,24 @@ final class CalendarViewController: BaseViewController, UICalendarViewDelegate, 
         applyLanguage()
     }
 
- 
+    override func applyLanguage() {
+        subtitle.text = L.t("calsub")
+        calendarView.locale = L.locale
+        updateStatus()
+    }
+
+    private func updateStatus() {
+        guard let p = CycleStore.prediction() else { status.text = L.t("nodata"); return }
+        let f = DateFormatter(); f.locale = L.locale; f.setLocalizedDateFormatFromTemplate("dMMMM")
+        status.text = String(format: L.t("next"), f.string(from: p.next), p.length)
+    }
+
+    private func toggle(_ dc: DateComponents, on: Bool) {
+        guard let key = CycleStore.key(dc) else { return }
+        let old = CycleStore.predictedKeys()
+        CycleStore.toggle(key, on: on)
+        let changed = old.union(CycleStore.predictedKeys()).union([key]).compactMap { CycleStore.components($0) }
+        calendarView.reloadDecorations(forDateComponents: changed, animated: true)
+        updateStatus()
+    }
+
