@@ -24,4 +24,18 @@ enum CycleStore {
 
     // next expected start date and the average cycle length (default 28 days).
     static func prediction() -> (next: Date, length: Int)? {
-       
+        let dates = days.compactMap { fmt.date(from: $0) }.sorted()
+        var starts: [Date] = []; var prev: Date?
+        for d in dates {
+            if let p = prev, (cal.dateComponents([.day], from: p, to: d).day ?? 9) <= 1 { } else { starts.append(d) }
+            prev = d
+        }
+        guard let last = starts.last else { return nil }
+        var gaps: [Int] = []
+        for i in 1..<starts.count { // starts.count >= 1, so the range is valid
+            let g = cal.dateComponents([.day], from: starts[i - 1], to: starts[i]).day ?? 0
+            if (15...60).contains(g) { gaps.append(g) }
+        }
+        let n = gaps.isEmpty ? 28 : gaps.reduce(0, +) / gaps.count
+        return cal.date(byAdding: .day, value: n, to: last).map { ($0, n) }
+ 
