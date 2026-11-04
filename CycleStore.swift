@@ -22,7 +22,7 @@ enum CycleStore {
     }
     static func toggle(_ key: String, on: Bool) { if on { days.insert(key) } else { days.remove(key) } }
 
-    // next expected start date and the average cycle length (default 28 days).
+    //next expected start date and the average cycle length (default 28 days).
     static func prediction() -> (next: Date, length: Int)? {
         let dates = days.compactMap { fmt.date(from: $0) }.sorted()
         var starts: [Date] = []; var prev: Date?
