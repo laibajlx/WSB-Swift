@@ -38,4 +38,10 @@ enum CycleStore {
         }
         let n = gaps.isEmpty ? 28 : gaps.reduce(0, +) / gaps.count
         return cal.date(byAdding: .day, value: n, to: last).map { ($0, n) }
- 
+    }
+    // five predicted period days
+    static func predictedKeys() -> Set<String> {
+        guard let p = prediction() else { return [] }
+        return Set((0..<5).compactMap { cal.date(byAdding: .day, value: $0, to: p.next) }.map { fmt.string(from: $0) })
+    }
+}
