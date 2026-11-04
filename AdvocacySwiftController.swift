@@ -79,4 +79,5 @@ final class AdvocacyViewController: BaseViewController, UITextFieldDelegate, UIT
         copyBtn.configuration?.title = L.t("copied")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in self?.copyBtn.configuration?.title = L.t("copy") }
     }
+    func textFieldShouldReturn(_ tf: UITextField) -> Bool { tf.resignFirstResponder(); return true }
 }
