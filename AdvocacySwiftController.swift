@@ -1,7 +1,7 @@
 import UIKit
 import SafariServices
 
-/// ZIP code -> official legislator lookups -> editable email draft opened via mailto:.
+// ZIP code -> official legislator lookups -> editable email draft opened via mailto:.
 final class AdvocacyViewController: BaseViewController, UITextFieldDelegate, UITextViewDelegate {
     private let zip = UITextField(), name = UITextField(), city = UITextField(), email = UITextField()
     private lazy var zipLabel = label(.headline), draftLabel = label(.headline), noteLabel = label(.footnote, color: .secondaryLabel)
