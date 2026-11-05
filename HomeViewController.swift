@@ -7,4 +7,5 @@ final class HomeViewController: BaseViewController {
     private lazy var actBtn = filledButton(#selector(goAct), filled: false)
     private let features = (1...3).map { _ in (UILabel(), UILabel()) }
 
-    
+    override func viewDidLoad() {
+        
