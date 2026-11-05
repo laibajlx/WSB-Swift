@@ -21,4 +21,5 @@ final class HomeViewController: BaseViewController {
             let row = UIStackView(arrangedSubviews: [bar, box]); row.spacing = 12
             stack.addArrangedSubview(row)
         }
-        
+        applyLanguage()
+    }
