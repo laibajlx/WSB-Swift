@@ -8,4 +8,8 @@ final class HomeViewController: BaseViewController {
     private let features = (1...3).map { _ in (UILabel(), UILabel()) }
 
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
+        let stack = makeScrollStack()
+        [headline, lead, calBtn, actBtn].forEach { stack.addArrangedSubview($0) }
+        stack.setCustomSpacing(24, after: actBtn)
+     
