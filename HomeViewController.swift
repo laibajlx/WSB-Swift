@@ -23,3 +23,11 @@ final class HomeViewController: BaseViewController {
         }
         applyLanguage()
     }
+    override func applyLanguage() {
+        headline.text = L.t("h1"); lead.text = L.t("lead")
+        calBtn.configuration?.title = L.t("go.cal"); actBtn.configuration?.title = L.t("go.act")
+        for (i, f) in features.enumerated() { f.0.text = L.t("f\(i + 1)t"); f.1.text = L.t("f\(i + 1)") }
+    }
+    @objc private func goCal() { tabBarController?.selectedIndex = 1 }
+    @objc private func goAct() { tabBarController?.selectedIndex = 2 }
+}
