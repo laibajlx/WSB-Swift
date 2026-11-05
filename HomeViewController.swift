@@ -12,4 +12,13 @@ final class HomeViewController: BaseViewController {
         let stack = makeScrollStack()
         [headline, lead, calBtn, actBtn].forEach { stack.addArrangedSubview($0) }
         stack.setCustomSpacing(24, after: actBtn)
-     
+        for (t, b) in features {
+            t.numberOfLines = 0; b.numberOfLines = 0
+            t.font = .preferredFont(forTextStyle: .headline); b.font = .preferredFont(forTextStyle: .subheadline)
+            b.textColor = .secondaryLabel
+            let box = UIStackView(arrangedSubviews: [t, b]); box.axis = .vertical; box.spacing = 2
+            let bar = UIView(); bar.backgroundColor = .brand; bar.widthAnchor.constraint(equalToConstant: 4).isActive = true
+            let row = UIStackView(arrangedSubviews: [bar, box]); row.spacing = 12
+            stack.addArrangedSubview(row)
+        }
+        
