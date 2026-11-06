@@ -7,3 +7,5 @@ extension UIColor {
 
 enum Lang: String { case en, pt }
 
+extension Notification.Name { static let languageChanged = Notification.Name("languageChanged") }
+
