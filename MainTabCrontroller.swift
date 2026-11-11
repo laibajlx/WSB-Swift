@@ -6,4 +6,4 @@ final class MainTabBarController: UITabBarController {
         (CalendarViewController(), "calendar", "calendar"),
         (AdvocacyViewController(), "act", "envelope")
     ]
-    
+}
